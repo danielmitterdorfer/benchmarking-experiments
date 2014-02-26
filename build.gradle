@@ -1,0 +1,38 @@
+/*
+ * This is a minimalistic Gradle build script to demonstrate proper integration with JMH. JMH includes corresponding
+ * Maven build scripts in the example project; see http://hg.openjdk.java.net/code-tools/jmh/file/8348c841328f/jmh-samples/pom.xml
+ */
+
+apply plugin: 'idea'
+apply plugin: 'java'
+apply plugin: 'shadow'
+
+version = '0.1.0'
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.openjdk.jmh', name: 'jmh-core', version: '0.4.2'
+    //just needed for DateFormatMicroBenchmark
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.2.1'
+}
+
+//see https://github.com/johnrengelman/shadow
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:0.8'
+    }
+}
+
+shadow {
+    transformer(com.github.jengelman.gradle.plugins.shadow.transformers.ManifestResourceTransformer) {
+        attributes(['Main-Class' : 'org.openjdk.jmh.Main'])
+    }
+}

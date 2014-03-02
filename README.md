@@ -1,7 +1,7 @@
 Benchmarking Experiments
 ========================
 
-This project contains experiments with purposefully flawed hand-written microbenchmarks and microbenchmarks with the Java Microbenchmarking Harness [JMH](http://openjdk.java.net/projects/code-tools/jmh).
+This project contains experiments with purposefully flawed hand-written microbenchmarks and microbenchmarks using the Java Microbenchmarking Harness ([JMH](http://openjdk.java.net/projects/code-tools/jmh)).
 
 # Getting Started
 
@@ -16,7 +16,7 @@ Installation with Gradle (recommended):
 ```
 git clone https://github.com/danielmitterdorfer/benchmarking-experiments.git
 cd benchmarking-experiments
-gradle shadow #or: mvn clean package
+gradle shadow
 java -jar build/distributions/benchmarking-experiments-0.1.0-shadow.jar
 ```
 

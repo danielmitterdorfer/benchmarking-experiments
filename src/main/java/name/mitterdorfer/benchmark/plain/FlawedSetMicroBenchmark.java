@@ -10,7 +10,6 @@ public class FlawedSetMicroBenchmark {
         List<? extends Set<Integer>> testees =
                 Arrays.asList(
                         new HashSet<Integer>(),
-                        new HashSet<Integer>(),
                         new TreeSet<Integer>(),
                         new ConcurrentSkipListSet<Integer>());
         for (Set<Integer> testee : testees) {

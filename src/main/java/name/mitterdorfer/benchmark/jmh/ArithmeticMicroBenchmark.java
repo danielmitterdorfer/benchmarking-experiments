@@ -1,9 +1,9 @@
 package name.mitterdorfer.benchmark.jmh;
 
-import org.openjdk.jmh.annotations.GenerateMicroBenchmark;
+import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.State;
-import org.openjdk.jmh.logic.BlackHole;
+import org.openjdk.jmh.infra.Blackhole;
 
 import java.math.BigInteger;
 
@@ -19,13 +19,13 @@ public class ArithmeticMicroBenchmark {
     private BigInteger bb = BigInteger.valueOf(b);
 
     // No need for loops, JMH will handle this...
-    @GenerateMicroBenchmark
+    @Benchmark
     public long addPrimitives() {
         return a + b;
     }
 
     // No need for loops, JMH will handle this...
-    @GenerateMicroBenchmark
+    @Benchmark
     public BigInteger addBigIntegers() {
         return ba.add(bb);
     }
@@ -33,8 +33,8 @@ public class ArithmeticMicroBenchmark {
     // Blackholes are used to consume data in a non-trivial way so the compiler is not able to eliminate the call
     // In this case a Blachole wouldn't be necessary; they are more suitable when multiple values need to be consumed
     // in a single microbenchmark method
-    @GenerateMicroBenchmark
-    public void addWithBlackhole(BlackHole bh) {
+    @Benchmark
+    public void addWithBlackhole(Blackhole bh) {
         bh.consume(a + b);
     }
 

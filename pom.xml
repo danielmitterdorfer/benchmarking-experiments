@@ -1,5 +1,6 @@
 <!--
-    This is a minimalistic Maven POM to get you started with jmh. It matches the capabilities of build.gradle.
+    This is a minimalistic Maven POM to get you started with jmh. It matches the capabilities of build.gradle except for
+    IDE project file creation.
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -11,11 +12,22 @@
     <artifactId>benchmarking-experiments</artifactId>
     <version>0.1.0-SNAPSHOT</version>
 
+    <properties>
+        <jmh.version>0.9</jmh.version>
+    </properties>
+
+
     <dependencies>
         <dependency>
             <groupId>org.openjdk.jmh</groupId>
             <artifactId>jmh-core</artifactId>
-            <version>0.4.2</version>
+            <version>${jmh.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-generator-annprocess</artifactId>
+            <version>${jmh.version}</version>
+            <scope>provided</scope>
         </dependency>
         <!-- just needed for DateFormatMicroBenchmark -->
         <dependency>

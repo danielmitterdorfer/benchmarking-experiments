@@ -1,6 +1,6 @@
 /*
  * This is a minimalistic Gradle build script to demonstrate proper integration with JMH. JMH includes corresponding
- * Maven build scripts in the example project; see http://hg.openjdk.java.net/code-tools/jmh/file/8348c841328f/jmh-samples/pom.xml
+ * Maven build scripts in the example project; see http://hg.openjdk.java.net/code-tools/jmh/file/86072ed4c056/jmh-samples/pom.xml
  */
 
 apply plugin: 'idea'
@@ -11,14 +11,39 @@ version = '0.1.0'
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
+
+// emulate scope 'provided' in Gradle - see http://blog.codeaholics.org/2012/emulating-mavens-provided-scope-in-gradle/
+configurations {
+    provided
+}
+
+sourceSets {
+    main.compileClasspath += configurations.provided
+    test.compileClasspath += configurations.provided
+    test.runtimeClasspath += configurations.provided
+}
+
 repositories {
     mavenCentral()
 }
 
+ext.jmhVersion = '0.9'
+
 dependencies {
-    compile group: 'org.openjdk.jmh', name: 'jmh-core', version: '0.4.2'
+    compile "org.openjdk.jmh:jmh-core:$jmhVersion"
+    provided "org.openjdk.jmh:jmh-generator-annprocess:$jmhVersion"
     //just needed for DateFormatMicroBenchmark
-    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.2.1'
+    compile 'org.apache.commons:commons-lang3:3.2.1'
+}
+
+idea {
+    module {
+        // support provided scope in IDEA:
+        // See also http://www.gradle.org/docs/current/dsl/org.gradle.plugins.ide.idea.model.IdeaModule.html
+        scopes.PROVIDED.plus += configurations.provided
+        //avoid duplicate entries in provided scope (i.e. jmh-core)
+        scopes.PROVIDED.minus += configurations.compile
+    }
 }
 
 //see https://github.com/johnrengelman/shadow

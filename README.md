@@ -28,6 +28,9 @@ cd benchmarking-experiments
 mvn clean package
 java -jar target/benchmarking-experiments.jar
 ```
+
+The Gradle build file supports also IntelliJ IDEA project setup. Just issue `gradle idea` to create the project files.
+
 # License
 
 'Benchmarking Experiments' is distributed under the terms of the [Apache Software Foundation license, version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html).

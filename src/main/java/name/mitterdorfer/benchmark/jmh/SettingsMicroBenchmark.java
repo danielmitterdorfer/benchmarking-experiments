@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit;
 //just for demonstration purposes, use specific modes in real microbenchmarks
 @BenchmarkMode(value = Mode.All)
 public class SettingsMicroBenchmark {
-    @GenerateMicroBenchmark
+    @Benchmark
     public void benchmarkRuntimeOverhead() {
         //intentionally empty
     }

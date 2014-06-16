@@ -63,7 +63,7 @@ public class DateFormatMicroBenchmark {
         }
     }
 
-    @GenerateMicroBenchmark
+    @Benchmark
     @Threads(1)
     public String measureJdkFormat_1(
             JdkDateFormatHolder df,
@@ -71,7 +71,7 @@ public class DateFormatMicroBenchmark {
         return df.format(date.date);
     }
 
-    @GenerateMicroBenchmark
+    @Benchmark
     @Threads(2)
     public String measureJdkFormat_2(
             JdkDateFormatHolder df,
@@ -79,7 +79,7 @@ public class DateFormatMicroBenchmark {
         return df.format(date.date);
     }
 
-    @GenerateMicroBenchmark
+    @Benchmark
     @Threads(4)
     public String measureJdkFormat_4(
             JdkDateFormatHolder df,
@@ -87,7 +87,7 @@ public class DateFormatMicroBenchmark {
         return df.format(date.date);
     }
 
-    @GenerateMicroBenchmark
+    @Benchmark
     @Threads(8)
     public String measureJdkFormat_8(
             JdkDateFormatHolder df,
@@ -95,7 +95,7 @@ public class DateFormatMicroBenchmark {
         return df.format(date.date);
     }
 
-    @GenerateMicroBenchmark
+    @Benchmark
     @Threads(1)
     public String measureSyncJdkFormat_1(
             SyncJdkDateFormatHolder df,
@@ -104,7 +104,7 @@ public class DateFormatMicroBenchmark {
         return df.format(date.date);
     }
 
-    @GenerateMicroBenchmark
+    @Benchmark
     @Threads(2)
     public String measureSyncJdkFormat_2(
             SyncJdkDateFormatHolder df,
@@ -113,7 +113,7 @@ public class DateFormatMicroBenchmark {
         return df.format(date.date);
     }
 
-    @GenerateMicroBenchmark
+    @Benchmark
     @Threads(4)
     public String measureSyncJdkFormat_4(
             SyncJdkDateFormatHolder df,
@@ -122,7 +122,7 @@ public class DateFormatMicroBenchmark {
         return df.format(date.date);
     }
 
-    @GenerateMicroBenchmark
+    @Benchmark
     @Threads(8)
     public String measureSyncJdkFormat_8(
             SyncJdkDateFormatHolder df,
@@ -130,7 +130,7 @@ public class DateFormatMicroBenchmark {
         return df.format(date.date);
     }
 
-    @GenerateMicroBenchmark
+    @Benchmark
     @Threads(1)
     public String measureCommonsFormat_1(
             CommonsDateFormatHolder df,
@@ -138,7 +138,7 @@ public class DateFormatMicroBenchmark {
         return df.format(date.date);
     }
 
-    @GenerateMicroBenchmark
+    @Benchmark
     @Threads(2)
     public String measureCommonsFormat_2(
             CommonsDateFormatHolder df,
@@ -146,7 +146,7 @@ public class DateFormatMicroBenchmark {
         return df.format(date.date);
     }
 
-    @GenerateMicroBenchmark
+    @Benchmark
     @Threads(4)
     public String measureCommonsFormat_4(
             CommonsDateFormatHolder df,
@@ -154,7 +154,7 @@ public class DateFormatMicroBenchmark {
         return df.format(date.date);
     }
 
-    @GenerateMicroBenchmark
+    @Benchmark
     @Threads(8)
     public String measureCommonsFormat_8(
             CommonsDateFormatHolder df,

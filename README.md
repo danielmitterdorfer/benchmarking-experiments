@@ -7,7 +7,7 @@ This project contains experiments with purposefully flawed hand-written microben
 
 ## Prerequisites
 
-The project requires at least JDK 7 and Gradle 1.8 or Maven 3.0.
+The project requires at least JDK 7 and Gradle 2.0 or Maven 3.0.
 
 ## Installation
 
@@ -17,7 +17,7 @@ Installation with Gradle (recommended):
 git clone https://github.com/danielmitterdorfer/benchmarking-experiments.git
 cd benchmarking-experiments
 gradle shadow
-java -jar build/distributions/benchmarking-experiments-0.1.0-shadow.jar
+java -jar build/libs/benchmarking-experiments-0.1.0-all.jar
 ```
 
 or alternatively with Maven:

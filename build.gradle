@@ -5,7 +5,7 @@
 
 apply plugin: 'idea'
 apply plugin: 'java'
-apply plugin: 'shadow'
+apply plugin: 'com.github.johnrengelman.shadow'
 
 version = '0.1.0'
 sourceCompatibility = 1.7
@@ -27,7 +27,7 @@ repositories {
     mavenCentral()
 }
 
-ext.jmhVersion = '0.9'
+ext.jmhVersion = '0.9.7'
 
 dependencies {
     compile "org.openjdk.jmh:jmh-core:$jmhVersion"
@@ -40,9 +40,10 @@ idea {
     module {
         // support provided scope in IDEA:
         // See also http://www.gradle.org/docs/current/dsl/org.gradle.plugins.ide.idea.model.IdeaModule.html
-        scopes.PROVIDED.plus += configurations.provided
+        scopes.PROVIDED.plus += [configurations.provided]
         //avoid duplicate entries in provided scope (i.e. jmh-core)
-        scopes.PROVIDED.minus += configurations.compile
+        //scopes.PROVIDED.minus += [configurations.compile]
+        downloadSources = true
     }
 }
 
@@ -52,12 +53,12 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.github.jengelman.gradle.plugins:shadow:0.8'
+        classpath 'com.github.jengelman.gradle.plugins:shadow:1.0.2'
     }
 }
 
-shadow {
-    transformer(com.github.jengelman.gradle.plugins.shadow.transformers.ManifestResourceTransformer) {
-        attributes(['Main-Class' : 'org.openjdk.jmh.Main'])
+jar {
+    manifest {
+        attributes("Main-Class": "org.openjdk.jmh.Main")
     }
 }

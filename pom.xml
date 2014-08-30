@@ -13,7 +13,7 @@
     <version>0.1.0-SNAPSHOT</version>
 
     <properties>
-        <jmh.version>0.9.7</jmh.version>
+        <jmh.version>1.0</jmh.version>
     </properties>
 
 

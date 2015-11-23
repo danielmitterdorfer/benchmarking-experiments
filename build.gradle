@@ -3,13 +3,16 @@
  * Maven build scripts in the example project; see http://hg.openjdk.java.net/code-tools/jmh/file/86072ed4c056/jmh-samples/pom.xml
  */
 
-apply plugin: 'idea'
-apply plugin: 'java'
-apply plugin: 'com.github.johnrengelman.shadow'
+plugins {
+    id 'java'
+    id 'idea'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '1.2.2'
+}
 
 version = '0.1.0'
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 
 // emulate scope 'provided' in Gradle - see http://blog.codeaholics.org/2012/emulating-mavens-provided-scope-in-gradle/
@@ -27,7 +30,7 @@ repositories {
     mavenCentral()
 }
 
-ext.jmhVersion = '1.0'
+ext.jmhVersion = '1.9.3'
 
 dependencies {
     compile "org.openjdk.jmh:jmh-core:$jmhVersion"
@@ -47,18 +50,5 @@ idea {
     }
 }
 
-//see https://github.com/johnrengelman/shadow
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.github.jengelman.gradle.plugins:shadow:1.0.2'
-    }
-}
-
-jar {
-    manifest {
-        attributes("Main-Class": "org.openjdk.jmh.Main")
-    }
-}
+// see https://github.com/johnrengelman/shadow/issues/130
+mainClassName = 'org.openjdk.jmh.Main'
